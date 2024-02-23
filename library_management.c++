@@ -57,18 +57,21 @@ void CheckOutBook(int index, Book Books[], vector<Info> &customers) {
 
     cout << "Select a book to check out:" << endl;
     for (int i = 0; i < 10; i++) {
-        cout << i << " -> " << endl;
-        cout << "Title - " << Books[i].name << endl;
-        cout << "Author - " << Books[i].author << endl;
-        cout << "Genre - " << Books[i].genre << endl;
-        cout << "Quantity - " << Books[i].quantity << endl;
-        cout << "----------------------------------------------------------------------------" << endl;
+        if (Books[i].quantity > 0) {
+            cout << i << " -> " << endl;
+            cout << "Title - " << Books[i].name << endl;
+            cout << "Author - " << Books[i].author << endl;
+            cout << "Genre - " << Books[i].genre << endl;
+            cout << "Quantity - " << Books[i].quantity << endl;
+            cout << "----------------------------------------------------------------------------" << endl;
+        }
     }
 
     int bookIndex;
     do {
         cout << "Enter the book index: ";
-        cin >> bookIndex;
+       cin >> bookIndex;
+
 
         if (cin.fail() || bookIndex < 0 || bookIndex >= 10 || Books[bookIndex].quantity <= 0) {
             cin.clear();
@@ -87,6 +90,7 @@ void CheckOutBook(int index, Book Books[], vector<Info> &customers) {
     cout << "Note: Please return this book before " << customer.date.day + 10 << "-" << customer.date.month << "-"
          << customer.date.year << endl;
 }
+
 
 void CheckInBook(int index, Book Books[], vector<Info> &customers) {
     string name;
